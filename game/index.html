@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lantern Lane — Spot the Difference</title>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #14101f; }
+  body { font-family: "Trebuchet MS", "Segoe UI", Verdana, sans-serif; color: #f5ead6; }
+  #stage { width: 1280px; height: 800px; margin: 0 auto; position: relative; }
+  header { height: 70px; display: flex; align-items: center; gap: 10px; padding: 0 16px;
+    background: linear-gradient(180deg, #241a3d, #1a1330); border-bottom: 2px solid #4a3566; }
+  header h1 { font-size: 20px; margin: 0; letter-spacing: 1px; color: #ffd97a; white-space: nowrap; }
+  header h1 span { color: #ff9d5c; }
+  .pill { background: #2e2149; border: 1px solid #5b4480; border-radius: 999px;
+    padding: 6px 11px; font-size: 14px; font-weight: bold; white-space: nowrap; }
+  .pill b { color: #ffd97a; }
+  .pill.warn b { color: #ff7a6b; }
+  #sceneName { color: #b9a8e0; font-size: 15px; font-style: italic; }
+  .spacer { flex: 1; }
+  button { font: inherit; font-size: 14px; font-weight: bold; cursor: pointer;
+    color: #241a3d; background: #ffd97a; border: 0; border-radius: 999px; padding: 8px 13px; white-space: nowrap; }
+  button:hover { background: #ffe6a8; }
+  button:disabled { opacity: 0.4; cursor: default; }
+  button.ghost { background: #2e2149; color: #f5ead6; border: 1px solid #5b4480; }
+  #board { display: block; width: 1280px; height: 660px; cursor: crosshair; }
+  footer { height: 70px; display: flex; align-items: center; gap: 24px; padding: 0 20px;
+    background: #1a1330; border-top: 2px solid #4a3566; font-size: 15px; color: #cbbcf0; }
+  footer kbd { background: #2e2149; border: 1px solid #5b4480; border-bottom-width: 3px;
+    border-radius: 6px; padding: 2px 7px; font-family: inherit; color: #ffd97a; }
+  #status { position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip-path: inset(50%); white-space: nowrap; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <header>
+    <h1>Lantern Lane <span>• Spot the Difference</span></h1>
+    <span class="pill" id="scenePill">Scene <b id="sceneNum">1</b>/3 · <span id="sceneName">Lantern Lane</span></span>
+    <span class="pill">Found <b id="foundCount">0</b>/<span id="totalCount">10</span></span>
+    <span class="pill">Remaining <b id="remainCount">10</b></span>
+    <span class="pill" id="timerPill">Time <b id="timerText">3:00</b></span>
+    <span class="spacer"></span>
+    <span class="pill">Score <b id="scoreText">0</b></span>
+    <button id="hintBtn" type="button">Hint (H) · <span id="hintCount">3</span> left</button>
+    <button id="restartBtn" class="ghost" type="button">Restart (R)</button>
+  </header>
+  <canvas id="board" width="1280" height="660"
+    aria-label="Spot the difference: two near-identical pictures side by side. Click a difference in either picture."></canvas>
+  <footer>
+    <span>Click a difference in <b>either</b> picture — it gets circled in both.</span>
+    <span><kbd>H</kbd> hint &nbsp; <kbd>R</kbd> restart &nbsp; <kbd>1</kbd>–<kbd>3</kbd> scene</span>
+    <span id="message">Find all the differences before the lanterns burn out!</span>
+  </footer>
+</div>
+<p id="status" role="status" aria-live="polite"></p>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
